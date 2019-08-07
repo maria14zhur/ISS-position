@@ -1,6 +1,6 @@
 flask
 gunicorn
 numpy
-matplotlib
+matplotlib.pyplot
 requests
 ast
