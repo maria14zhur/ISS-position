@@ -4,18 +4,17 @@ import matplotlib.pyplot as plt
 from flask import render_template
 
 
-def draw_aitoff():
-    plt.figure()
-    plt.subplot(111, projection="aitoff")
-    plt.title("Aitoff")
-    plt.grid(True)
-    plt.savefig('map1.png')
+
 
 @app.route('/')
 @app.route('/index')
 def index():
     astromen = str(get_astronauts())
     position = get_position()
-    draw_aitoff()
+    plt.figure()
+    plt.subplot(111, projection="aitoff")
+    plt.title("Aitoff")
+    plt.grid(True)
+    plt.savefig(r'.\app\static\ait.png')
 
-    return render_template('index.html', astromen=astromen, longitude=str(position[0]), latitude=str(position[0]))
+    return render_template('index.html', astromen=astromen, longitude=position[0], latitude=position[1])

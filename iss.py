@@ -8,7 +8,7 @@ def __validate_answer(text):
         raise ValueError('Incorrect data')
 
 
-def get_astronauts()->int:
+def get_astronauts():
     try:
         r = requests.get('http://api.open-notify.org/astros.json')
     except requests.exceptions.RequestException as e:
@@ -16,7 +16,7 @@ def get_astronauts()->int:
     else:
         text = le(r.text)
         __validate_answer(text)
-        numb_of_people = int(text["number"])
+        numb_of_people = text["number"]
         return numb_of_people
 
 
@@ -28,8 +28,8 @@ def get_position()->(float, float):
     else:
         text = le(r.text)
         __validate_answer(text)
-        longitude = float(text['iss_position']['longitude'])
-        latitude = float(text['iss_position']['latitude'])
+        longitude = text['iss_position']['longitude']
+        latitude = text['iss_position']['latitude']
         return longitude, latitude
 
 
@@ -38,4 +38,5 @@ def draw_aitoff():
     plt.subplot(111, projection="aitoff")
     plt.title("Aitoff")
     plt.grid(True)
-    plt.show()
+    plt.savefig('ait.png')
+
